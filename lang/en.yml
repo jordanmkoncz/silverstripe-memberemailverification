@@ -1,0 +1,12 @@
+en:
+  MemberEmailVerification:
+    ERROREMAILNOTVERIFIED: 'Sorry, you need to verify your email address before you can log in.'
+    BUTTONLOSTVERIFICATIONEMAIL: 'I''ve lost my verification email'
+    VERIFYEMAILTITLE: 'Verify Email'
+    VERIFYEMAILTEXT: 'You need to verify your email address before you can log in. Use the form below to resend the email verification link.'
+    EMAILSENTTITLE: 'Email Verification Link Sent'
+    EMAILSENTTEXT: 'An email verification link has been sent to %s, provided an account exists for this email address.'
+    BUTTONRESENDEMAIL: 'Send me the email verification link again'
+    VALIDATEEMAILFAIL: 'Email verification failed. This may be due to an incorrect verification string, please ensure you copy and paste the entire link. If this problem persists, please contact us.'
+    VALIDATEEMAILSUCCESS: 'Your email has been successfully verified. You can now {login_link} to the website.'
+    VERIFICATIONEMAILSUBJECT: '{site_title} Email Verification'

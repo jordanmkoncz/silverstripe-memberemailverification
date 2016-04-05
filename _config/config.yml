@@ -1,0 +1,10 @@
+---
+Name: silverstripe-memberemailverification
+---
+
+Member:
+  extensions:
+    - EmailVerificationMemberExtension
+Security:
+  extensions:
+    - EmailVerificationSecurityExtension
