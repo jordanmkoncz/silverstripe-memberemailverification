@@ -87,6 +87,12 @@ class EmailVerificationMemberExtension extends DataExtension {
         );
 
         $admin_email = Config::inst()->get('Email', 'admin_email');
+
+        if(!$admin_email) {
+            // Fallback to a placeholder admin email if Email.admin_email is not set
+            $admin_email = 'admin@domain.com';
+        }
+
         $sender_email = self::get_formatted_email(SiteConfig::current_site_config()->Title, $admin_email);
         $recipient_email = $this->owner->Email;
 
