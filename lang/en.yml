@@ -10,3 +10,4 @@ en:
     VALIDATEEMAILFAIL: 'Email verification failed. This may be due to an incorrect verification string, please ensure you copy and paste the entire link. If this problem persists, please contact us.'
     VALIDATEEMAILSUCCESS: 'Your email has been successfully verified. You can now {login_link} to the website.'
     VERIFICATIONEMAILSUBJECT: '{site_title} Email Verification'
+    EMAILVERIFIEDTITLE: 'Email Verified'
