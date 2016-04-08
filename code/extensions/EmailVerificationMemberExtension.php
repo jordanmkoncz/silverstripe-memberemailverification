@@ -13,8 +13,17 @@ class EmailVerificationMemberExtension extends DataExtension {
     );
 
     private static $summary_fields = array(
-        'Verified.Nice' => 'Verified'
+        'IsVerified'
     );
+
+    /**
+     * Return whether the user is verified.
+     *
+     * @return string
+     */
+    public function IsVerified() {
+        return ($this->owner->Verified) ? _t('Boolean.YESANSWER', 'Yes') : _t('Boolean.NOANSWER', 'No');
+    }
 
     /**
      * Check if the user has verified their email address.
