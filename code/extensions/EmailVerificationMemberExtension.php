@@ -12,10 +12,6 @@ class EmailVerificationMemberExtension extends DataExtension {
         'VerificationEmailSent' => false
     );
 
-    private static $summary_fields = array(
-        'IsVerified'
-    );
-
     /**
      * Return whether the user is verified.
      *
@@ -23,6 +19,15 @@ class EmailVerificationMemberExtension extends DataExtension {
      */
     public function IsVerified() {
         return ($this->owner->Verified) ? _t('Boolean.YESANSWER', 'Yes') : _t('Boolean.NOANSWER', 'No');
+    }
+
+    /**
+     * Update Member summary fields to include whether the Member is verified.
+     *
+     * @param array $fields
+     */
+    public function updateSummaryFields(&$fields) {
+        $fields['IsVerified'] = _t('MemberEmailVerification.EMAILVERIFIEDTITLE', "Email Verified");
     }
 
     /**
