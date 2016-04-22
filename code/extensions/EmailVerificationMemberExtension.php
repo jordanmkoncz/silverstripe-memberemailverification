@@ -62,7 +62,7 @@ class EmailVerificationMemberExtension extends DataExtension {
         }
 
         if (!$this->owner->Verified && !$this->owner->VerificationEmailSent) {
-            $this->owner->sendVerificationEmail();
+            $this->owner->VerificationEmailSent = $this->owner->sendVerificationEmail();
         }
     }
 
@@ -100,8 +100,8 @@ class EmailVerificationMemberExtension extends DataExtension {
         $email_to_recipient->setTemplate('VerificationEmail');
         $email_to_recipient->populateTemplate($email_template_data);
 
-        $this->owner->VerificationEmailSent = $email_to_recipient->send();
-        $this->owner->write();
+        return $email_to_recipient->send();
+        
     }
 
     /**
