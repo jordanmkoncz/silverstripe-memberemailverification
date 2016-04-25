@@ -62,7 +62,7 @@ class EmailVerificationMemberExtension extends DataExtension {
         }
 
         if (!$this->owner->Verified && !$this->owner->VerificationEmailSent) {
-            $this->owner->sendVerificationEmail();
+            $this->owner->VerificationEmailSent = $this->owner->sendVerificationEmail();
         }
     }
 
@@ -100,8 +100,15 @@ class EmailVerificationMemberExtension extends DataExtension {
         $email_to_recipient->setTemplate('VerificationEmail');
         $email_to_recipient->populateTemplate($email_template_data);
 
-        $this->owner->VerificationEmailSent = $email_to_recipient->send();
-        $this->owner->write();
+        $email_status = $email_to_recipient->send();
+
+        // Return true if the email was successfully sent
+        // Mailer::email will return `true` or an array if the email was successfully sent
+        if($email_status === true || is_array($email_status)) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
