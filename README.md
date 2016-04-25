@@ -36,7 +36,7 @@ The templates for all controller actions in the Security extension can also be o
 
 ## Example Project
 
-You can view an example project that uses this module [here](https://github.com/jordanmkoncz/silverstripe-memberemailverification-example).
+You can view an example project that uses this module at [jordanmkoncz/silverstripe-memberemailverification-example](https://github.com/jordanmkoncz/silverstripe-memberemailverification-example).
 
 ## Credits
 
