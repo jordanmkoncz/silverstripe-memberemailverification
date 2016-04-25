@@ -71,29 +71,30 @@ class EmailVerificationMemberExtension extends DataExtension {
      */
     public function sendVerificationEmail() {
         $validation_link = Controller::join_links(Director::absoluteURL('Security/validate-email'), $this->owner->VerificationString);
+        $site_config = SiteConfig::current_site_config();
+        $site_title = $site_config->Title;
+        $admin_email = Config::inst()->get('Email', 'admin_email');
 
         $email_template_data = array(
             'Member' => $this->owner,
             'ValidationLink' => $validation_link,
-            'SiteConfig' => SiteConfig::current_site_config()
+            'SiteConfig' => $site_config
         );
 
         $email_subject = _t(
             'MemberEmailVerification.VERIFICATIONEMAILSUBJECT',
             "{site_title} Email Verification",
             array(
-                'site_title' => SiteConfig::current_site_config()->Title
+                'site_title' => $site_title
             )
         );
-
-        $admin_email = Config::inst()->get('Email', 'admin_email');
 
         if(!$admin_email) {
             // Fallback to a placeholder admin email if Email.admin_email is not set
             $admin_email = 'admin@domain.com';
         }
 
-        $sender_email = self::get_formatted_email(SiteConfig::current_site_config()->Title, $admin_email);
+        $sender_email = self::get_formatted_email($site_title, $admin_email);
         $recipient_email = $this->owner->Email;
 
         $email_to_recipient = Email::create($sender_email, $recipient_email, $email_subject);
