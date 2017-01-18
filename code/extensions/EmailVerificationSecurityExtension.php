@@ -82,7 +82,7 @@ class EmailVerificationSecurityExtension extends Extension {
      */
     public function VerifyEmailForm() {
         $email_field_label = singleton('Member')->fieldLabel(Member::config()->unique_identifier_field);
-        $email_field = TextField::create('Email', $email_field_label, null, null, $this)->setAttribute('autofocus', 'autofocus');
+        $email_field = EmailField::create('Email', $email_field_label, null, null, $this)->setAttribute('autofocus', 'autofocus');
 
         $fields = FieldList::create(
             $email_field
@@ -113,8 +113,9 @@ class EmailVerificationSecurityExtension extends Extension {
         $controller = Controller::curr();
         $email = isset($data['Email']) ? $data['Email'] : false;
 
-        if(!$email) {
-            return $controller->redirect('/Security/login');
+        // Make sure the user has provided a valid email address
+        if(!$email || !Email::is_valid_address($email)) {
+            return $controller->redirect('/Security/verify-email');
         }
 
         $member = Member::get()->filter(array(
