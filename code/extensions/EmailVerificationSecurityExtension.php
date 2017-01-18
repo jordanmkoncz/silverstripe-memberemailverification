@@ -126,6 +126,9 @@ class EmailVerificationSecurityExtension extends Extension {
             $member->sendVerificationEmail();
         }
 
+        // Escape email value provided by the user before storing it in the session
+        $email = Convert::raw2sql($email);
+
         Session::set('EmailVerificationEmail', $email);
 
         return $controller->redirect('Security/email-sent/');
